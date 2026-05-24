@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tri Ân Lớp 9/2 - Mãi Mãi Là Thanh Xuân</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons for stunning visuals -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Elegant Merriweather and Clean Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Animate On Scroll (AOS) for premium scroll animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <style>
+        :root {
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: #0b0914;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        .font-serif {
+            font-family: var(--font-serif);
+        }
+
+        /* Glassmorphism premium classes */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 12px 40px 0 rgba(236, 72, 153, 0.15);
+        }
+
+        /* Interactive animated elements */
+        .animate-gradient-text {
+            background: linear-gradient(to right, #ff7eb3, #ff758c, #ac73ff, #62b6ff);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientMove 8s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Premium scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0914;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Ambient glowing circles */
+        .glow-sphere {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.25;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Dynamic floating effect for teacher card */
+        .float-animation {
+            animation: floatUpDown 6s ease-in-out infinite;
+        }
+
+        @keyframes floatUpDown {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Styling navigation links */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: linear-gradient(to right, #ff7eb3, #ac73ff);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="relative">
+
+    <!-- Interactive Background Particle Canvas -->
+    <canvas id="particleCanvas" class="fixed inset-0 w-full h-full pointer-events-none z-10"></canvas>
+
+    <!-- Glowing Background Atmosphere Spheres -->
+    <div class="glow-sphere w-[400px] h-[400px] bg-pink-500 top-20 -left-40"></div>
+    <div class="glow-sphere w-[500px] h-[500px] bg-indigo-600 top-[120vh] -right-60"></div>
+    <div class="glow-sphere w-[400px] h-[400px] bg-fuchsia-500 bottom-40 left-10"></div>
+
+    <!-- Modern Header Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-40 glass-panel border-b border-white/10 px-6 py-4 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="#" class="text-xl font-bold tracking-wider bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
+                9/2 CONFESSIONS
+            </a>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+                <a href="#trang-chu" class="nav-link text-white/80 hover:text-white transition">Kỷ Niệm</a>
+                <a href="#giao-vien" class="nav-link text-white/80 hover:text-white transition">Người Lái Đò</a>
+                <a href="#thanh-vien" class="nav-link text-white/80 hover:text-white transition">Chúng Ta (39)</a>
+                <a href="#luu-but" class="nav-link text-white/80 hover:text-white transition">Gửi Lời Nhắn</a>
+            </div>
+            <div class="flex items-center space-x-3">
+                <button onclick="toggleMusic()" class="relative flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-all text-pink-400" title="Nhạc nền hồi ức">
+                    <i id="music-icon" class="fa-solid fa-music animate-pulse"></i>
+                </button>
+                <a href="#luu-but" class="bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold text-xs px-5 py-2.5 rounded-full hover:shadow-[0_4px_15px_rgba(236,72,153,0.4)] transition duration-300">
+                    <i class="fa-solid fa-pen-nib mr-2"></i>Tâm Sự
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="trang-chu" class="relative min-h-screen flex flex-col justify-center items-center text-center px-4 overflow-hidden pt-16">
+        <!-- Hero Background Cover with Premium Blur Overlay -->
+        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 scale-105" style="background-image: url('lop92.png'); background-color: #110e24;"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0b0914] via-[#0b0914]/85 to-black/40"></div>
+        
+        <div class="relative z-20 max-w-4xl px-4" data-aos="zoom-out-up">
+            <span class="inline-block bg-white/10 border border-white/20 text-pink-300 text-xs tracking-[0.2em] font-bold uppercase py-2 px-6 rounded-full mb-6 backdrop-blur-sm">
+                Kỷ Niệm Niên Khóa 2022 - 2026
+            </span>
+            <h1 class="font-serif text-5xl md:text-8xl font-black mb-8 animate-gradient-text drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)]">
+                Những Kỷ Niệm<br>Của Lớp 9/2
+            </h1>
+            <p class="text-lg md:text-2xl text-gray-300/90 font-light max-w-2xl mx-auto leading-relaxed mb-10 italic">
+                "Thanh xuân của chúng ta giống như một thước phim ngắn, dẫu đã khép màn nhưng những khoảnh khắc đẹp nhất sẽ mãi mãi vẹn nguyên."
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#thanh-vien" class="w-full sm:w-auto px-8 py-4 bg-white text-[#0b0914] font-bold rounded-full hover:bg-pink-100 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-all duration-300">
+                    Khám Phá Thành Viên
+                </a>
+                <a href="#luu-but" class="w-full sm:w-auto px-8 py-4 glass-panel text-white font-bold rounded-full hover:bg-white/10 transition-all duration-300">
+                    <i class="fa-solid fa-feather mr-2"></i>Viết Lưu Bút
+                </a>
+            </div>
+        </div>
+        
+        <!-- Bottom Floating Pointer -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 animate-bounce">
+            <a href="#giao-vien" class="text-white/60 hover:text-white transition">
+                <i class="fa-solid fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Homeroom Teacher Honor Section -->
+    <section id="giao-vien" class="relative py-24 px-4 bg-[#0b0914] z-25">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-serif text-3xl md:text-5xl font-bold text-white mb-4">Người Lái Đò Thầm Lặng</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-pink-500 to-purple-500 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="glass-panel rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 md:gap-16 relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                <!-- Glowing corner effect -->
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-pink-500/20 blur-3xl rounded-full"></div>
+                
+                <div class="relative flex-shrink-0 float-animation">
+                    <div class="w-48 h-48 md:w-56 md:h-56 rounded-full p-1 bg-gradient-to-tr from-pink-500 via-purple-500 to-indigo-500">
+                        <img src="thaydong.png" alt="Thầy Huỳnh Văn Đông" class="w-full h-full rounded-full object-cover shadow-2xl" onerror="this.src='https://placehold.co/240x240/1a1830/ff7ebd?text=Thầy+Đông'">
+                    </div>
+                    <span class="absolute bottom-3 right-3 bg-pink-500 text-white font-bold text-xs px-4 py-1.5 rounded-full uppercase shadow-lg">
+                        Chủ Nhiệm
+                    </span>
+                </div>
+
+                <div class="flex-grow text-center md:text-left">
+                    <h3 class="font-serif text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300 mb-2">
+                        Huỳnh Văn Đông
+                    </h3>
+                    <p class="text-pink-400 font-medium tracking-widest text-sm uppercase mb-6">
+                        Giáo viên chủ nhiệm đáng kính lớp 9/2
+                    </p>
+                    <div class="relative mb-6">
+                        <i class="fa-solid fa-quote-left text-4xl text-pink-500/20 absolute -top-4 -left-6"></i>
+                        <p class="text-gray-300 text-base md:text-lg italic leading-relaxed relative z-10">
+                            "Những nét bút vụng dại buổi tựu trường, nay đã hóa đôi cánh vững chãi vút bay vào chân trời tri thức mới. Cảm ơn tập thể lớp 9/2 đã luôn là động lực, là niềm tự hào vô bờ bến trong sự nghiệp dạy học của Thầy."
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap justify-center md:justify-start gap-3 mt-4">
+                        <span class="bg-white/5 border border-white/10 px-4 py-1.5 rounded-full text-xs text-gray-300">
+                            <i class="fa-solid fa-heart text-pink-500 mr-2"></i>Tận tụy
+                        </span>
+                        <span class="bg-white/5 border border-white/10 px-4 py-1.5 rounded-full text-xs text-gray-300">
+                            <i class="fa-solid fa-shield-halved text-purple-400 mr-2"></i>Bản lĩnh
+                        </span>
+                        <span class="bg-white/5 border border-white/10 px-4 py-1.5 rounded-full text-xs text-gray-300">
+                            <i class="fa-solid fa-fire text-orange-400 mr-2"></i>Nhiệt huyết
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Class Members Section -->
+    <section id="thanh-vien" class="relative py-24 px-4 bg-gradient-to-b from-[#0b0914] to-[#0e0c1f]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-pink-400 font-bold uppercase tracking-widest text-xs">Mảnh Ghép Kỷ Niệm</span>
+                <h2 class="font-serif text-3xl md:text-5xl font-bold text-white mt-2">Đại Gia Đình 9/2</h2>
+                <p class="text-gray-400 mt-4 max-w-xl mx-auto">Chúng ta là một tập thể 39 cá tính rực rỡ, hội tụ để tạo nên một niên khóa rạng ngời và đầy cảm xúc.</p>
+                <div class="w-16 h-1 bg-gradient-to-r from-pink-500 to-purple-500 mx-auto rounded-full mt-6"></div>
+            </div>
+
+            <!-- Responsive Grid System: Mobile: 3 cols, Tablet: 4 cols, Desktop: 5-6 cols -->
+            <div id="member-grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 md:gap-6 justify-center">
+                <!-- Dynamically injected via JavaScript with unique premium colors -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Sổ lưu bút - Memory Wall -->
+    <section id="luu-but" class="relative py-24 px-4 bg-[#0b0914] z-20">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-purple-400 font-bold uppercase tracking-widest text-xs">Ghi Lại Hoài Niệm</span>
+                <h2 class="font-serif text-3xl md:text-5xl font-bold text-white mt-2">Sổ Lưu Bút Online</h2>
+                <p class="text-gray-400 mt-3">Gửi lại những lời chúc, những tâm sự thầm kín hay tấm ảnh kỷ niệm của bạn dưới đây để lưu giữ bền vững mãi về sau.</p>
+                <div class="w-16 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full mt-6"></div>
+            </div>
+
+            <div class="glass-panel p-8 rounded-3xl mb-12" data-aos="fade-up" data-aos-delay="200">
+                <form id="memoirForm" onsubmit="saveMemoir(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-300 mb-2">
+                                <i class="fa-solid fa-user text-pink-500 mr-2"></i>Tên của bạn
+                            </label>
+                            <input type="text" id="memoir-author" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-pink-500 focus:ring-1 focus:ring-pink-500 transition" placeholder="Ví dụ: Nguyễn Minh Thư">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-300 mb-2">
+                                <i class="fa-solid fa-image text-purple-400 mr-2"></i>Ảnh kỷ niệm (Tùy chọn)
+                            </label>
+                            <div class="flex items-center space-x-3">
+                                <label class="w-full flex justify-between items-center bg-white/5 border border-white/10 hover:border-pink-500/50 rounded-xl px-4 py-3 text-white outline-none cursor-pointer transition">
+                                    <span id="file-chosen" class="text-gray-400 text-sm overflow-hidden text-ellipsis whitespace-nowrap">Chọn một bức ảnh đẹp...</span>
+                                    <input type="file" id="memoir-image" accept="image/*" class="hidden" onchange="updateFileName(this)">
+                                    <i class="fa-solid fa-cloud-arrow-up text-pink-400"></i>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-300 mb-2">
+                            <i class="fa-solid fa-pen-fancy text-indigo-400 mr-2"></i>Nội dung lời chúc / Tâm sự
+                        </label>
+                        <textarea id="memoir-text" required rows="4" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white outline-none focus:border-pink-500 focus:ring-1 focus:ring-pink-500 transition leading-relaxed resize-none" placeholder="Hãy viết những dòng lưu bút, cảm nghĩ về 4 năm học dưới mái trường mến yêu..."></textarea>
+                    </div>
+                    <div class="flex justify-end">
+                        <button type="submit" class="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:shadow-[0_4px_25px_rgba(236,72,153,0.5)] text-white font-bold py-3 px-8 rounded-full transition-all duration-300 flex items-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i>Gửi Lên Bức Tường Kỷ Niệm
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Memory Wall Board -->
+            <div id="memories-container" class="space-y-6">
+                <!-- Dynamically populated confessions list -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Interactive Modal for Classmate Details -->
+    <div id="modal" class="fixed inset-0 bg-black/85 backdrop-blur-xl flex items-center justify-center hidden z-50 p-4 transition-all duration-300 opacity-0">
+        <div class="glass-panel p-8 md:p-10 rounded-3xl max-w-lg w-full text-center relative overflow-hidden border border-white/20 transform scale-95 transition-all duration-300">
+            <!-- Background lights decoration in modal -->
+            <div class="absolute -top-12 -left-12 w-32 h-32 bg-pink-500/30 blur-3xl rounded-full"></div>
+            <div class="absolute -bottom-12 -right-12 w-32 h-32 bg-indigo-500/30 blur-3xl rounded-full"></div>
+
+            <button onclick="closeModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- Initials Box Dynamic Logo inside Modal -->
+            <div id="modal-initials" class="w-24 h-24 rounded-full flex items-center justify-center font-bold text-3xl mx-auto mb-6 text-white shadow-lg shadow-pink-500/30"></div>
+
+            <h3 id="modal-name" class="font-serif text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-200 mb-1"></h3>
+            <span id="modal-role" class="inline-block bg-white/5 text-pink-300 font-medium text-xs px-4 py-1 rounded-full mb-6">Thành viên 9/2</span>
+            
+            <div class="relative py-4 px-6 rounded-2xl bg-white/5 border border-white/5 mb-6">
+                <i class="fa-solid fa-quote-left text-3xl text-pink-500/15 absolute top-2 left-3"></i>
+                <p id="modal-wish" class="text-gray-200 text-base italic leading-relaxed relative z-10"></p>
+                <i class="fa-solid fa-quote-right text-3xl text-pink-500/15 absolute bottom-2 right-3"></i>
+            </div>
+
+            <p class="text-sm text-gray-400">
+                Chúc bạn luôn chân cứng đá mềm và rạng rỡ trên muôn nẻo đường! 💖
+            </p>
+        </div>
+    </div>
+
+    <!-- Embedded Background Nostalgic Lofi Audio Player -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Site Footer -->
+    <footer class="border-t border-white/5 py-10 bg-[#06040b] text-center text-sm text-gray-500 relative z-30">
+        <div class="max-w-7xl mx-auto px-4">
+            <p class="mb-3">Thiết kế bởi một người bạn tri âm lớp 9/2 dành cho tất cả thành viên thương mến.</p>
+            <p>&copy; 2026 Tập thể Lớp 9/2. Bảo lưu mọi ký ức tươi đẹp.</p>
+        </div>
+    </footer>
+
+    <!-- Script Logic -->
+    <script>
+        // AOS Animation Engine Initialization
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Comprehensive Classmate Data (39 Members)
+        const studentsData = [
+            { name: "Minh Thư", wish: "Chúc bạn luôn giữ được nụ cười rạng rỡ này nhé. Hãy đỗ nguyện vọng 1 thật xuất sắc nha!" },
+            { name: "Lan Phương", wish: "Phương ơi, chúc cậu luôn tự tin và tỏa sáng rực rỡ trong bất kỳ môi trường mới nào sắp tới nhé!" },
+            { name: "Bích Nhi", wish: "Chúc bạn đạt được ước mơ trở thành nhà văn xuất chúng, luôn thành công trên con đường tương lai!" },
+            { name: "Quốc Kiệt", wish: "Cảm ơn vì đã luôn đồng hành cùng lớp. Chúc bạn một tương lai thật rạng ngời và thăng tiến!" },
+            { name: "Bảo Thy", wish: "Chúc cô bạn xinh xắn của tớ có một chặng đường cấp 3 đầy hoa hồng và hạnh phúc ngập tràn nhé." },
+            { name: "Hồng Thắm", wish: "Thắm ơi, chúc cậu thi đỗ trường chuyên mà cậu ao ước, hãy tự tin vào bản thân nhé!" },
+            { name: "Duy Khang", wish: "Anh chàng năng nổ của lớp! Chúc bạn gặt hái được thật nhiều thành tựu lớn trong cuộc sống." },
+            { name: "Hồng Yên", wish: "Chúc cậu luôn an yên giống như chính cái tên của cậu vậy. Đỗ nguyện vọng 1 thật xuất sắc!" },
+            { name: "Huyền Trân", wish: "Chúc bạn một chặng đường mới ngập tràn niềm vui, luôn kiêu hãnh bước tiếp những ước mơ." },
+            { name: "Khánh Ngọc", wish: "Viên ngọc quý của lớp! Chúc bạn học thật giỏi, giữ vững đam mê học tập bất tận nhé." },
+            { name: "Khánh Đăng", wish: "Chúc Đăng gặt hái được nhiều chiến thắng vẻ vang, luôn dẫn đầu ngọn đèn của tri thức." },
+            { name: "Anh Kiệt", wish: "Kiệt mập mạp vui tính, chúc cậu luôn mạnh mẽ, tự tin và chinh phục mọi đỉnh cao!" },
+            { name: "Kim Ngân", wish: "Chúc Ngân lúc nào cũng dồi dào tài năng, luôn tươi tắn và đón nhận những cơ duyên may mắn." },
+            { name: "Khôi Nguyên", wish: "Nguyên chín chắn của chúng ta! Chúc bạn đỗ trường công lập danh tiếng và rực rỡ nhất." },
+            { name: "Gia Bảo", wish: "Chúc cậu sẽ gặt hái được nhiều bảo vật ý nghĩa nhất trong suốt hành trình thanh xuân." },
+            { name: "Mẫn Mẫn", wish: "Cô gái đáng yêu! Chúc Mẫn Mẫn luôn tràn ngập năng lượng tích cực và may mắn tuyệt đối." },
+            { name: "Minh", wish: "Minh vui tươi, chúc bạn luôn sáng suốt vượt qua mọi thử thách, chinh phục ước mơ vươn tầm cao." },
+            { name: "Ngọc Châm", wish: "Chúc Châm luôn giữ được sự dịu dàng đặc biệt và đỗ đạt cực kỳ xuất sắc nhé." },
+            { name: "Ngọc Trâm", wish: "Gửi tới Trâm lời chúc may mắn ngập tràn. Tự tin bước đi trên nẻo đường mới đầy hạnh phúc." },
+            { name: "Quế Anh", wish: "Cảm ơn vì những kỉ niệm đáng nhớ. Chúc Quế Anh luôn học tốt và hạnh phúc trên chặng đường mới." },
+            { name: "Quốc Bảo", wish: "Tương lai lấp lánh đang vẫy chào cậu phía trước. Hãy thật vững vàng và kiên định nhé Bảo!" },
+            { name: "Thành Đạt", wish: "Học giỏi và đạt được tất cả những thành quả ý nghĩa đúng như tên gọi của cậu nha Đạt!" },
+            { name: "Cẩm Vy", wish: "Chúc cô bé luôn xinh xắn như đóa hoa cẩm tú cầu, gặt hái thật nhiều thành quả tuyệt vời!" },
+            { name: "Lam Trường", wish: "Chàng trai ấm áp, chúc bạn luôn kiên trì vượt sóng gió, sớm trở thành chỗ dựa của mọi người." },
+            { name: "Hải Nguyên", wish: "Chúc cậu luôn bay cao, bay xa như cánh chim vượt muôn trùng trùng biển cả đại dương rộng lớn." },
+            { name: "Nhân Nghĩa", wish: "Chân lý cuộc đời nằm ở sự trọn nghĩa vẹn tình. Chúc cậu luôn gặt hái nhiều hạnh phúc lớn." },
+            { name: "Huỳnh Anh", wish: "Chúc bạn luôn mỉm cười vượt qua mọi khó khăn, vững vàng chinh phục cánh cửa tương lai tươi đẹp." },
+            { name: "Tấn Phụng", wish: "Chúc Phụng gặt hái được thành công vang dội trên con đường học tập và nghiên cứu sau này." },
+            { name: "Linh Sang", wish: "Sang sang trọng! Chúc bạn luôn rạng rỡ tỏa hương sắc, đỗ vào ngôi trường THPT như ý nguyện." },
+            { name: "Phương Lam", wish: "Lam dịu dàng, chúc bạn luôn tràn ngập sức sống, gieo mầm hy vọng khắp mọi bước đi sắp tới." },
+            { name: "Phương thảo", wish: "Bông hoa đồng nội xanh mát! Chúc thảo luôn tràn ngập tiếng cười hạnh phúc và niềm tin vào tương lai." },
+            { name: "Thị Tím", wish: "Màu tím chung thủy và đáng nhớ! Chúc Tím luôn tỏa sáng theo phong cách rực rỡ rất riêng của cậu." },
+            { name: "Thanh Trúc", wish: "Chúc Trúc dẻo dai vững bước trước muôn gió lớn đời người, đạt được học vị cao và hạnh phúc." },
+            { name: "Trường Duy", wish: "Chúc Duy duy trì được nguồn động lực tích cực, đột phá mọi mục tiêu học tập một cách tuyệt vời!" },
+            { name: "Trường Khang", wish: "Chúc bạn có cuộc sống bình an, mạnh khỏe và đạt được thành tựu học vấn tột đỉnh." },
+            { name: "Minh Mẫn", wish: "Sự sáng suốt và tài ba sẽ luôn đồng hành cùng cậu trên mọi nẻo đường chông gai phía trước." },
+            { name: "Quốc Thái", wish: "Chúc Thái lúc nào cũng thong thả, gieo trồng thật nhiều quả ngọt học vấn đỉnh cao nhé." },
+            { name: "Thảo Nguyên", wish: "Cánh đồng cỏ xanh ngát! Chúc cậu tự do bay nhảy tự tại, hạnh phúc với mọi quyết định của mình." },
+            { name: "Mỹ Xuyên", wish: "Mỹ Xuyên của chúng mình! Chúc bạn luôn rực rỡ, lộng lẫy và thành công rực sáng trên mọi nẻo đường." }
+        ];
+
+        // Premium Pastel Gradient List for Cards
+        const cardGradients = [
+            'from-pink-500/20 to-purple-500/20 border-pink-500/30 text-pink-300 hover:shadow-pink-500/20',
+            'from-purple-500/20 to-indigo-500/20 border-purple-500/30 text-purple-300 hover:shadow-purple-500/20',
+            'from-indigo-500/20 to-cyan-500/20 border-indigo-500/30 text-indigo-300 hover:shadow-indigo-500/20',
+            'from-teal-500/20 to-emerald-500/20 border-teal-500/30 text-emerald-300 hover:shadow-teal-500/20',
+            'from-amber-500/20 to-orange-500/20 border-amber-500/30 text-amber-300 hover:shadow-amber-500/20',
+            'from-rose-500/20 to-pink-500/20 border-rose-500/30 text-rose-300 hover:shadow-rose-500/20'
+        ];
+
+        // Initials Generator: (Takes first char of first name & last name)
+        function generateInitials(fullName) {
+            const parts = fullName.trim().split(/\s+/);
+            if (parts.length >= 2) {
+                return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+            }
+            return fullName.substring(0, 2).toUpperCase();
+        }
+
+        // Render Classmate Grid dynamically
+        const memberGrid = document.getElementById('member-grid');
+        studentsData.forEach((student, index) => {
+            const initials = generateInitials(student.name);
+            const gradientClass = cardGradients[index % cardGradients.length];
+            
+            const card = document.createElement('div');
+            card.className = `glass-card aspect-square rounded-full flex flex-col items-center justify-center cursor-pointer p-4 text-center bg-gradient-to-tr ${gradientClass} group relative transform hover:-translate-y-2`;
+            card.setAttribute('data-aos', 'fade-up');
+            card.setAttribute('data-aos-delay', (index % 6) * 50);
+            
+            card.innerHTML = `
+                <div class="font-bold text-lg md:text-2xl tracking-wider transition duration-300 group-hover:scale-110">
+                    ${initials}
+                </div>
+                <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 rounded-full transition duration-300"></div>
+                <!-- Mini tooltip text -->
+                <div class="absolute -bottom-8 bg-black/90 border border-white/10 text-[10px] text-white py-1 px-3 rounded-full opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20">
+                    ${student.name}
+                </div>
+            `;
+            
+            card.onclick = () => openModal(student, gradientClass);
+            memberGrid.appendChild(card);
+        });
+
+        // Modal Control Logic
+        const modal = document.getElementById('modal');
+        const modalContent = modal.querySelector('.glass-panel');
+        const modalInitials = document.getElementById('modal-initials');
+        const modalName = document.getElementById('modal-name');
+        const modalWish = document.getElementById('modal-wish');
+
+        function openModal(student, gradientClass) {
+            modalInitials.innerText = generateInitials(student.name);
+            modalInitials.className = `w-24 h-24 rounded-full flex items-center justify-center font-bold text-4xl mx-auto mb-6 bg-gradient-to-tr ${gradientClass} text-white`;
+            modalName.innerText = student.name;
+            modalWish.innerText = `${student.wish} \n\n— Ký tên: ${student.name} ❤`;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Close modal when clicking outside background
+        modal.onclick = (e) => {
+            if (e.target === modal) closeModal();
+        };
+
+        // File Name display updater for Memoir upload
+        function updateFileName(input) {
+            const fileName = input.files[0]?.name || "Chọn một bức ảnh đẹp...";
+            document.getElementById('file-chosen').innerText = fileName;
+        }
+
+        // Save Confession to LocalStorage
+        function saveMemoir(event) {
+            event.preventDefault();
+            const author = document.getElementById('memoir-author').value.trim();
+            const text = document.getElementById('memoir-text').value.trim();
+            const imageFile = document.getElementById('memoir-image').files[0];
+
+            if (!author || !text) return;
+
+            const postMemoir = (imgSrc) => {
+                const newMemoir = {
+                    id: 'mem_' + Date.now(),
+                    author: author,
+                    text: text,
+                    image: imgSrc,
+                    timestamp: new Date().toLocaleString('vi-VN')
+                };
+
+                // Add to start of array
+                let currentMemoirs = JSON.parse(localStorage.getItem('lop92_confessions')) || [];
+                currentMemoirs.unshift(newMemoir);
+                localStorage.setItem('lop92_confessions', JSON.stringify(currentMemoirs));
+
+                renderMemoirs();
+                document.getElementById('memoirForm').reset();
+                document.getElementById('file-chosen').innerText = "Chọn một bức ảnh đẹp...";
+            };
+
+            if (imageFile) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    postMemoir(e.target.result);
+                };
+                reader.readAsDataURL(imageFile);
+            } else {
+                postMemoir(null);
+            }
+        }
+
+        // Render Memories from LocalStorage
+        function renderMemoirs() {
+            const container = document.getElementById('memories-container');
+            container.innerHTML = '';
+            
+            const memoirs = JSON.parse(localStorage.getItem('lop92_confessions')) || [];
+            
+            if (memoirs.length === 0) {
+                container.innerHTML = `
+                    <div class="glass-panel p-10 text-center rounded-2xl border border-dashed border-white/20">
+                        <i class="fa-solid fa-feather-pointed text-4xl text-pink-400 mb-4 animate-bounce"></i>
+                        <p class="text-gray-400 text-sm">Chưa có dòng tâm sự nào được lưu lại. Hãy là người đầu tiên ghi lưu bút nhé!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            memoirs.forEach(mem => {
+                const card = document.createElement('div');
+                card.className = "glass-panel p-6 rounded-2xl border border-white/10 transition duration-300 hover:border-pink-500/40 relative";
+                
+                let imgHtml = '';
+                if (mem.image) {
+                    imgHtml = `<img src="${mem.image}" class="w-full max-h-[350px] object-cover rounded-xl mt-4 mb-2 shadow-md" alt="Ảnh kỷ niệm">`;
+                }
+
+                card.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-pink-400 font-bold text-base block mb-0.5">${mem.author}</span>
+                            <span class="text-xs text-gray-400">${mem.timestamp}</span>
+                        </div>
+                        <span class="text-xs bg-white/5 border border-white/10 py-1 px-3 rounded-full text-pink-300">
+                            #9/2 Kỷ Niệm
+                        </span>
+                    </div>
+                    <p class="text-gray-200 mt-4 leading-relaxed text-sm whitespace-pre-line">${mem.text}</p>
+                    ${imgHtml}
+                    <!-- Delete button for post owner -->
+                    <button onclick="deleteMemoir('${mem.id}')" class="absolute bottom-4 right-4 text-xs text-red-400/50 hover:text-red-400 transition" title="Xóa kỷ niệm này">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Delete Memoir confession
+        function deleteMemoir(id) {
+            let currentMemoirs = JSON.parse(localStorage.getItem('lop92_confessions')) || [];
+            currentMemoirs = currentMemoirs.filter(m => m.id !== id);
+            localStorage.setItem('lop92_confessions', JSON.stringify(currentMemoirs));
+            renderMemoirs();
+        }
+
+        // Custom interactive Particle Background Logic (HTML5 Canvas)
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let particlesArray = [];
+        let mouse = { x: null, y: null, radius: 100 };
+
+        window.addEventListener('mousemove', function(event) {
+            mouse.x = event.x;
+            mouse.y = event.y;
+        });
+
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticles();
+        });
+
+        class Particle {
+            constructor(x, y, size, speedX, speedY, color) {
+                this.x = x;
+                this.y = y;
+                this.size = size;
+                this.speedX = speedX;
+                this.speedY = speedY;
+                this.color = color;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                // Bounce off edges
+                if (this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX;
+                if (this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY;
+
+                // Mouse interaction glow effect
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < mouse.radius) {
+                    if (this.size < 4) this.size += 0.2;
+                } else {
+                    if (this.size > 1) this.size -= 0.1;
+                }
+            }
+        }
+
+        function initParticles() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particlesArray = [];
+            let numberOfParticles = (canvas.width * canvas.height) / 14000;
+            
+            const particleColors = [
+                'rgba(244, 63, 94, 0.4)',  // rose
+                'rgba(168, 85, 247, 0.4)',  // purple
+                'rgba(99, 102, 241, 0.4)',  // indigo
+                'rgba(6, 182, 212, 0.4)'    // cyan
+            ];
+
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = Math.random() * 2 + 1;
+                let x = Math.random() * canvas.width;
+                let y = Math.random() * canvas.height;
+                let speedX = (Math.random() - 0.5) * 0.4;
+                let speedY = (Math.random() - 0.5) * 0.4;
+                let color = particleColors[Math.floor(Math.random() * particleColors.length)];
+                particlesArray.push(new Particle(x, y, size, speedX, speedY, color));
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        // Music Player controls
+        const bgMusic = document.getElementById('bgMusic');
+        const musicIcon = document.getElementById('music-icon');
+        let isMusicPlaying = false;
+
+        function toggleMusic() {
+            if (isMusicPlaying) {
+                bgMusic.pause();
+                musicIcon.className = "fa-solid fa-music";
+                musicIcon.style.animationPlayState = 'paused';
+                isMusicPlaying = false;
+            } else {
+                // Play and support browser autoplay limits
+                bgMusic.play().then(() => {
+                    musicIcon.className = "fa-solid fa-music text-pink-500 animate-pulse";
+                    isMusicPlaying = true;
+                }).catch(err => {
+                    console.log("Quy định tự động phát của trình duyệt yêu cầu người dùng tương tác trước.");
+                });
+            }
+        }
+
+        // Window Onload triggers setup
+        window.onload = function() {
+            initParticles();
+            animateParticles();
+            renderMemoirs();
+            
+            // Subtle floating navigation effect on scroll
+            const nav = document.querySelector('nav');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    nav.classList.add('py-2', 'bg-[#0a0813]/95');
+                } else {
+                    nav.classList.remove('py-2', 'bg-[#0a0813]/95');
+                }
+            });
+        };
+    </script>
+</body>
+</html>
