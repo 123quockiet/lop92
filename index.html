@@ -20,7 +20,6 @@
             font-family: 'Dancing Script', cursive;
         }
 
-        /* Glassmorphism Classes */
         .glass {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(16px);
@@ -42,7 +41,6 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.4), 0 0 15px rgba(255,105,180,0.5);
         }
 
-        /* Avatar styling */
         .avatar-circle {
             width: 70px;
             height: 70px;
@@ -63,7 +61,6 @@
             box-shadow: 0 0 20px currentColor;
         }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0d0414; }
         ::-webkit-scrollbar-thumb { background: #6b46c1; border-radius: 10px; }
@@ -80,7 +77,6 @@
             backdrop-filter: blur(8px);
         }
 
-        /* Loading Spinner */
         .loader {
             border: 4px solid rgba(255,255,255,0.1);
             border-top: 4px solid #fff;
@@ -94,7 +90,6 @@
 </head>
 <body class="relative min-h-screen">
 
-    <!-- Bụi sáng nền -->
     <canvas id="particles-canvas"></canvas>
 
     <!-- Trang chủ Hero -->
@@ -106,7 +101,6 @@
             <h1 class="text-6xl md:text-8xl mb-4 bg-clip-text text-transparent bg-gradient-to-r from-pink-400 via-purple-300 to-indigo-400 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">
                 Những kỷ niệm của lớp 9/2
             </h1>
-            <!-- Đã cập nhật niên khóa 2022-2026 -->
             <p class="text-xl md:text-2xl text-purple-200 mt-4 tracking-wider">Mãi mãi một thời để nhớ - Niên khóa 2022-2026</p>
             <button onclick="document.getElementById('teacher-section').scrollIntoView({behavior: 'smooth'})" class="mt-8 px-8 py-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 transition-all font-bold shadow-[0_0_20px_rgba(236,72,153,0.4)] hover:shadow-[0_0_30px_rgba(236,72,153,0.6)] transform hover:-translate-y-1">
                 Khám phá ngay <i class="fas fa-arrow-down ml-2"></i>
@@ -130,17 +124,20 @@
     <!-- Lưới Thành Viên -->
     <section class="py-10 px-4 md:px-10 max-w-7xl mx-auto">
         <h3 class="fancy-font text-4xl text-center mb-10 text-pink-200">Tập Thể 9/2 Yêu Dấu</h3>
-        <!-- CSS Grid cho 39 bạn -->
         <div id="students-grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6 justify-items-center">
-            <!-- Render JS -->
+            <!-- Render bằng JS -->
         </div>
     </section>
 
-    <!-- Sổ Lưu Bút Mạng Xã Hội (Dữ liệu chung) -->
+    <!-- Sổ Lưu Bút -->
     <section class="py-20 px-4 max-w-5xl mx-auto">
         <div class="glass p-8 rounded-3xl">
             <h3 class="fancy-font text-5xl text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-pink-400">Sổ Lưu Bút 9/2</h3>
             
+            <div id="system-warning" class="hidden mb-6 text-center text-yellow-300 bg-yellow-900/40 p-4 rounded-xl border border-yellow-600/50 text-sm">
+                <i class="fas fa-exclamation-triangle mr-2"></i> <strong>Chế Độ Cá Nhân:</strong> Bạn chưa thiết lập Máy chủ (Firebase). Bài đăng và Lời chúc sẽ chỉ lưu trên thiết bị của bạn.
+            </div>
+
             <!-- Form Đăng Bài -->
             <div class="bg-black/30 p-6 rounded-2xl mb-10 border border-white/10">
                 <input type="text" id="post-author" placeholder="Tên của bạn..." class="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white placeholder-gray-400 focus:outline-none focus:border-pink-500 mb-4 transition">
@@ -155,7 +152,6 @@
                         <span>Đăng Kỷ Niệm</span>
                     </button>
                 </div>
-                <!-- Vùng hiển thị ảnh nháp -->
                 <div id="image-preview-container" class="mt-4 hidden relative w-fit">
                     <img id="image-preview" src="" class="h-32 rounded-lg border-2 border-pink-400 object-cover">
                     <button onclick="clearImage()" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-600"><i class="fas fa-times text-xs"></i></button>
@@ -164,12 +160,11 @@
 
             <!-- Tường Lưu bút -->
             <div id="guestbook-wall" class="space-y-6">
-                <div class="text-center text-gray-400 py-10"><div class="loader"></div> Đang tải kỷ niệm từ máy chủ...</div>
+                <div class="text-center text-gray-400 py-10"><div class="loader"></div> Đang kiểm tra hệ thống...</div>
             </div>
         </div>
     </section>
 
-    <!-- Modals -->
     <!-- Modal Lời chúc -->
     <div id="wish-modal" class="fixed inset-0 modal-overlay z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
         <div class="glass-card w-11/12 max-w-md p-8 rounded-3xl text-center transform scale-95 transition-transform duration-300 relative">
@@ -177,7 +172,6 @@
             <div id="modal-avatar" class="w-24 h-24 mx-auto rounded-full flex items-center justify-center text-3xl font-bold mb-4 border-4 border-white shadow-[0_0_15px_rgba(255,255,255,0.5)]"></div>
             <h3 id="modal-name" class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-pink-300 mb-4"></h3>
             <div id="modal-wish-content" class="text-lg text-gray-200 italic mb-6 leading-relaxed"></div>
-            
             <button id="btn-edit-wish" class="text-sm bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full transition border border-white/20">
                 <i class="fas fa-edit"></i> Chỉnh sửa lời chúc này
             </button>
@@ -192,18 +186,18 @@
             <p id="edit-student-name" class="text-pink-300 mb-4 font-semibold"></p>
             <textarea id="edit-wish-text" rows="4" class="w-full bg-black/40 border border-white/20 rounded-lg p-3 text-white mb-4 focus:outline-none focus:border-pink-500" placeholder="Nhập lời chúc hoặc kỷ niệm mới..."></textarea>
             <button onclick="saveWish()" class="w-full bg-pink-600 hover:bg-pink-500 py-3 rounded-lg font-bold transition flex justify-center items-center gap-2">
-                <span id="save-wish-text">Lưu thay đổi cho cả lớp xem</span>
+                <span id="save-wish-text">Lưu thay đổi</span>
             </button>
         </div>
     </div>
 
-    <!-- Script Xử Lý Toàn Bộ Logic & Firebase -->
+    <!-- Scripts -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInWithCustomToken, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, onSnapshot, addDoc, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // === CẤU HÌNH DỮ LIỆU GỐC 39 THÀNH VIÊN ===
+        // === DANH SÁCH HỌC SINH ===
         const studentsList = [
             "Minh Thư", "Lan Phương", "Bích Nhi", "Quốc Kiệt", "Bảo Thy", "Hồng Thấm", "Duy Khang", "Hồng Yên", "Huyền Trân", 
             "Khánh Ngọc", "Khánh Đăng", "Anh Kiệt", "Kim Ngân", "Khôi Nguyên", "Gia Bảo", "Mẫn Mẫn", "Minh Khôi", "Ngọc Châm", 
@@ -212,7 +206,6 @@
             "Minh Mẫn", "Quốc Thái", "Thảo Nguyên", "Mỹ Xuyên"
         ];
         
-        // Tạo màu ngẫu nhiên nhưng sang trọng cho Avatar
         const colors = [
             'linear-gradient(135deg, #f6d365 0%, #fda085 100%)', 'linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%)',
             'linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)', 'linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)',
@@ -220,14 +213,12 @@
             'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', 'linear-gradient(135deg, #ff0844 0%, #ffb199 100%)'
         ];
 
-        // Lấy 2 chữ cái đầu
         const getInitials = (name) => {
             let parts = name.split(' ');
             if (parts.length === 1) return parts[0].substring(0, 2).toUpperCase();
             return (parts[parts.length - 2].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase();
         };
 
-        // Render Lưới Học Sinh (UI Initial)
         const grid = document.getElementById('students-grid');
         studentsList.forEach((name, index) => {
             const initials = getInitials(name);
@@ -243,114 +234,162 @@
             grid.appendChild(div);
         });
 
-        // === FIREBASE INIT & LOGIC (Hệ thống lưu trữ đồng bộ) ===
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'class92-app-id';
-
-        let currentUser = null;
-        let globalWishes = {}; // Lưu trữ lời chúc đã fetch từ Firebase
-        let currentEditIndex = -1;
-
-        // Bắt buộc xác thực trước khi thao tác DB (Rule 3)
-        const initAuth = async () => {
-            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                await signInWithCustomToken(auth, __initial_auth_token);
-            } else {
-                await signInAnonymously(auth);
-            }
+        // ==========================================
+        // KHU VỰC CẤU HÌNH FIREBASE CỦA BẠN
+        // Nếu muốn đồng bộ Realtime cho cả lớp, hãy điền thông tin vào đây:
+        // ==========================================
+        const myFirebaseConfig = {
+            apiKey: "", 
+            authDomain: "",
+            projectId: "",
+            storageBucket: "",
+            messagingSenderId: "",
+            appId: ""
         };
 
-        onAuthStateChanged(auth, (user) => {
-            currentUser = user;
-            if (user) {
-                startRealtimeListeners();
+        let useFirebase = false;
+        let db = null;
+        let auth = null;
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'class92-app-id';
+
+        let globalWishes = {};
+        let localPosts = [];
+        let currentEditIndex = -1;
+
+        // KIỂM TRA HỆ THỐNG LƯU TRỮ
+        try {
+            let configToUse = null;
+            if (typeof __firebase_config !== 'undefined' && __firebase_config) {
+                configToUse = JSON.parse(__firebase_config);
+            } else if (myFirebaseConfig.apiKey && myFirebaseConfig.apiKey !== "") {
+                configToUse = myFirebaseConfig;
             }
-        });
-        initAuth();
 
-        // Khởi chạy lắng nghe Dữ liệu Realtime
-        function startRealtimeListeners() {
-            if (!currentUser) return;
-
-            // 1. Lắng nghe Sổ lưu bút (Quy tắc Đường dẫn & Không Query Phức tạp)
-            const guestbookRef = collection(db, 'artifacts', appId, 'public', 'data', 'guestbook');
-            onSnapshot(guestbookRef, (snapshot) => {
-                const wall = document.getElementById('guestbook-wall');
-                wall.innerHTML = '';
-                let posts = [];
-                snapshot.forEach(doc => {
-                    posts.push({ id: doc.id, ...doc.data() });
-                });
+            if (configToUse) {
+                const app = initializeApp(configToUse);
+                auth = getAuth(app);
+                db = getFirestore(app);
+                useFirebase = true;
                 
-                // Sắp xếp bài mới nhất lên đầu trong JS
-                posts.sort((a, b) => b.timestamp - a.timestamp);
-
-                if (posts.length === 0) {
-                    wall.innerHTML = '<div class="text-center text-gray-400 italic py-10">Chưa có lời tâm sự nào. Hãy là người đầu tiên viết lưu bút!</div>';
-                    return;
-                }
-
-                posts.forEach(post => {
-                    const date = new Date(post.timestamp).toLocaleString('vi-VN');
-                    let imgHtml = post.imageBase64 ? `<img src="${post.imageBase64}" class="mt-4 rounded-xl max-h-80 object-contain border border-white/20 w-full bg-black/50" loading="lazy">` : '';
-                    
-                    wall.innerHTML += `
-                        <div class="glass-card p-6 rounded-2xl animate-[fadeIn_0.5s_ease-out]">
-                            <div class="flex justify-between items-start mb-3">
-                                <h4 class="font-bold text-pink-400 text-lg"><i class="fas fa-user-circle mr-2"></i>${post.author}</h4>
-                                <span class="text-xs text-gray-400"><i class="far fa-clock mr-1"></i>${date}</span>
-                            </div>
-                            <p class="text-gray-100 whitespace-pre-wrap leading-relaxed">${post.text}</p>
-                            ${imgHtml}
-                        </div>
-                    `;
+                // Khởi tạo Auth
+                const initAuth = async () => {
+                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                        await signInWithCustomToken(auth, __initial_auth_token);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+                };
+                
+                onAuthStateChanged(auth, (user) => {
+                    if (user) startRealtimeListeners();
                 });
-            }, (error) => {
-                console.error("Lỗi tải lưu bút:", error);
-                document.getElementById('guestbook-wall').innerHTML = '<div class="text-red-400">Lỗi kết nối máy chủ. Vui lòng thử lại.</div>';
-            });
-
-            // 2. Lắng nghe Lời chúc của 39 bạn
-            const wishesRef = collection(db, 'artifacts', appId, 'public', 'data', 'wishes');
-            onSnapshot(wishesRef, (snapshot) => {
-                snapshot.forEach(doc => {
-                    globalWishes[doc.id] = doc.data().wishText;
+                initAuth().catch(e => {
+                    console.warn("Lỗi Auth Firebase, chuyển sang Local:", e);
+                    useFirebase = false;
+                    startLocalListeners();
                 });
-                // Cập nhật modal nếu nó đang mở
-                if (currentEditIndex !== -1 && document.getElementById('wish-modal').style.display === 'flex') {
-                    const name = studentsList[currentEditIndex];
-                    document.getElementById('modal-wish-content').innerHTML = `"${globalWishes[`student_${currentEditIndex}`] || 'Chúc bạn luôn vui vẻ và gặt hái nhiều thành công trên con đường sắp tới!'}"<br><br><span class="text-pink-400 font-bold text-right block">- ${name} -</span>`;
-                }
-            }, (error) => console.error("Lỗi tải lời chúc:", error));
+            } else {
+                useFirebase = false;
+                startLocalListeners();
+            }
+        } catch (e) {
+            console.warn("Không có Firebase, chuyển sang Local:", e);
+            useFirebase = false;
+            startLocalListeners();
         }
 
-        // === XỬ LÝ LƯU BÚT & HÌNH ẢNH ===
-        let currentImageBase64 = null;
+        // ==========================================
+        // CHẾ ĐỘ 1: CÁ NHÂN (OFFLINE / LOCAL STORAGE)
+        // ==========================================
+        function startLocalListeners() {
+            document.getElementById('system-warning').classList.remove('hidden');
+            
+            // Tải dữ liệu từ LocalStorage
+            localPosts = JSON.parse(localStorage.getItem('class92_posts') || '[]');
+            globalWishes = JSON.parse(localStorage.getItem('class92_wishes') || '{}');
+            
+            renderPosts(localPosts);
+        }
 
-        // Resize và nén ảnh bằng Canvas để tránh quá tải dung lượng Firebase (<1MB)
+        function saveToLocal(type, data) {
+            if (type === 'post') {
+                localPosts.unshift(data);
+                localStorage.setItem('class92_posts', JSON.stringify(localPosts));
+                renderPosts(localPosts);
+            } else if (type === 'wish') {
+                globalWishes[`student_${data.index}`] = data.text;
+                localStorage.setItem('class92_wishes', JSON.stringify(globalWishes));
+            }
+        }
+
+        // ==========================================
+        // CHẾ ĐỘ 2: TRỰC TUYẾN (FIREBASE CLOUD)
+        // ==========================================
+        function startRealtimeListeners() {
+            const guestbookRef = collection(db, 'artifacts', appId, 'public', 'data', 'guestbook');
+            onSnapshot(guestbookRef, (snapshot) => {
+                let posts = [];
+                snapshot.forEach(doc => posts.push({ id: doc.id, ...doc.data() }));
+                posts.sort((a, b) => b.timestamp - a.timestamp);
+                renderPosts(posts);
+            }, (error) => {
+                console.error("Lỗi tải lưu bút:", error);
+                startLocalListeners(); // Chuyển về Local nếu lỗi mạng
+            });
+
+            const wishesRef = collection(db, 'artifacts', appId, 'public', 'data', 'wishes');
+            onSnapshot(wishesRef, (snapshot) => {
+                snapshot.forEach(doc => { globalWishes[doc.id] = doc.data().wishText; });
+                updateModalContent();
+            });
+        }
+
+        // ==========================================
+        // RENDER GIAO DIỆN CHUNG
+        // ==========================================
+        function renderPosts(posts) {
+            const wall = document.getElementById('guestbook-wall');
+            wall.innerHTML = '';
+            
+            if (posts.length === 0) {
+                wall.innerHTML = '<div class="text-center text-gray-400 italic py-10">Chưa có lời tâm sự nào. Hãy là người đầu tiên viết lưu bút!</div>';
+                return;
+            }
+
+            posts.forEach(post => {
+                const date = new Date(post.timestamp).toLocaleString('vi-VN');
+                let imgHtml = post.imageBase64 ? `<img src="${post.imageBase64}" class="mt-4 rounded-xl max-h-80 object-contain border border-white/20 w-full bg-black/50" loading="lazy">` : '';
+                
+                wall.innerHTML += `
+                    <div class="glass-card p-6 rounded-2xl animate-[fadeIn_0.5s_ease-out]">
+                        <div class="flex justify-between items-start mb-3">
+                            <h4 class="font-bold text-pink-400 text-lg"><i class="fas fa-user-circle mr-2"></i>${post.author}</h4>
+                            <span class="text-xs text-gray-400"><i class="far fa-clock mr-1"></i>${date}</span>
+                        </div>
+                        <p class="text-gray-100 whitespace-pre-wrap leading-relaxed">${post.text}</p>
+                        ${imgHtml}
+                    </div>
+                `;
+            });
+        }
+
+        let currentImageBase64 = null;
         window.previewImage = function(event) {
             const file = event.target.files[0];
             if (!file) return;
-
             const reader = new FileReader();
             reader.onload = (e) => {
                 const img = new Image();
                 img.onload = () => {
                     const canvas = document.createElement('canvas');
-                    const maxSize = 800; // Chiều dài tối đa 800px
+                    const maxSize = 800; 
                     let width = img.width; let height = img.height;
-                    
                     if (width > height && width > maxSize) { height *= maxSize / width; width = maxSize; } 
                     else if (height > maxSize) { width *= maxSize / height; height = maxSize; }
-                    
                     canvas.width = width; canvas.height = height;
                     const ctx = canvas.getContext('2d');
                     ctx.drawImage(img, 0, 0, width, height);
-                    
-                    currentImageBase64 = canvas.toDataURL('image/jpeg', 0.7); // Nén 70%
+                    currentImageBase64 = canvas.toDataURL('image/jpeg', 0.6);
                     document.getElementById('image-preview').src = currentImageBase64;
                     document.getElementById('image-preview-container').classList.remove('hidden');
                 };
@@ -366,30 +405,24 @@
         }
 
         window.submitPost = async function() {
-            if (!currentUser) return alert('Hệ thống đang kết nối, vui lòng đợi...');
             const author = document.getElementById('post-author').value.trim();
             const text = document.getElementById('post-text').value.trim();
-            
-            if (!author || !text) {
-                alert('Vui lòng nhập tên và lời tâm sự!');
-                return;
-            }
+            if (!author || !text) return alert('Vui lòng nhập tên và lời tâm sự!');
 
             const btn = document.getElementById('btn-submit-post');
             const originalHtml = btn.innerHTML;
             btn.innerHTML = '<div class="loader"></div> Đang đăng...';
             btn.disabled = true;
 
-            try {
-                const guestbookRef = collection(db, 'artifacts', appId, 'public', 'data', 'guestbook');
-                await addDoc(guestbookRef, {
-                    author: author,
-                    text: text,
-                    imageBase64: currentImageBase64,
-                    timestamp: Date.now()
-                });
+            const postData = { author, text, imageBase64: currentImageBase64, timestamp: Date.now() };
 
-                // Reset form
+            try {
+                if (useFirebase && auth.currentUser) {
+                    const guestbookRef = collection(db, 'artifacts', appId, 'public', 'data', 'guestbook');
+                    await addDoc(guestbookRef, postData);
+                } else {
+                    saveToLocal('post', postData);
+                }
                 document.getElementById('post-author').value = '';
                 document.getElementById('post-text').value = '';
                 clearImage();
@@ -402,7 +435,6 @@
             }
         }
 
-        // === XỬ LÝ MODAL LỜI CHÚC (Đọc / Sửa) ===
         window.openWishModal = function(index, name, color) {
             currentEditIndex = index;
             const modal = document.getElementById('wish-modal');
@@ -413,16 +445,12 @@
             avatar.innerText = getInitials(name);
             document.getElementById('modal-name').innerText = name;
             
-            // Lấy lời chúc từ DB hoặc mặc định
-            const wishText = globalWishes[`student_${index}`] || "Chúc bạn đỗ nguyện vọng 1 và luôn vững bước trên con đường đã chọn!";
-            document.getElementById('modal-wish-content').innerHTML = `"${wishText}"<br><br><span class="text-pink-400 font-bold text-right block">- ${name} -</span>`;
+            updateModalContent();
             
-            // Nút chuyển sang form Edit
             document.getElementById('btn-edit-wish').onclick = () => {
                 closeModal('wish-modal');
                 document.getElementById('edit-student-name').innerText = `Đang sửa lời chúc của: ${name}`;
-                document.getElementById('edit-wish-text').value = globalWishes[`student_${index}`] || wishText;
-                
+                document.getElementById('edit-wish-text').value = globalWishes[`student_${index}`] || "Chúc bạn luôn vui vẻ và gặt hái nhiều thành công!";
                 const editModal = document.getElementById('edit-wish-modal');
                 editModal.classList.remove('hidden');
                 setTimeout(() => { editModal.classList.remove('opacity-0'); editModal.querySelector('.glass-card').classList.remove('scale-95'); }, 10);
@@ -432,8 +460,18 @@
             setTimeout(() => { modal.classList.remove('opacity-0'); modal.querySelector('.glass-card').classList.remove('scale-95'); }, 10);
         }
 
+        function updateModalContent() {
+            if (currentEditIndex === -1) return;
+            const name = studentsList[currentEditIndex];
+            const wishText = globalWishes[`student_${currentEditIndex}`] || "Chúc bạn luôn vui vẻ và gặt hái nhiều thành công trên con đường sắp tới!";
+            const contentDiv = document.getElementById('modal-wish-content');
+            if(contentDiv) {
+                contentDiv.innerHTML = `"${wishText}"<br><br><span class="text-pink-400 font-bold text-right block">- ${name} -</span>`;
+            }
+        }
+
         window.saveWish = async function() {
-            if (!currentUser || currentEditIndex === -1) return;
+            if (currentEditIndex === -1) return;
             const newText = document.getElementById('edit-wish-text').value.trim();
             if (!newText) return;
 
@@ -441,15 +479,19 @@
             btnText.innerText = "Đang lưu...";
             
             try {
-                // Rule 1: Đường dẫn ghi chuẩn
-                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'wishes', `student_${currentEditIndex}`);
-                await setDoc(docRef, { wishText: newText }, { merge: true });
+                if (useFirebase && auth.currentUser) {
+                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'wishes', `student_${currentEditIndex}`);
+                    await setDoc(docRef, { wishText: newText }, { merge: true });
+                } else {
+                    saveToLocal('wish', { index: currentEditIndex, text: newText });
+                    updateModalContent();
+                }
                 closeModal('edit-wish-modal');
             } catch (e) {
                 console.error("Lỗi sửa lời chúc:", e);
                 alert("Lưu thất bại!");
             } finally {
-                btnText.innerText = "Lưu thay đổi cho cả lớp xem";
+                btnText.innerText = "Lưu thay đổi";
             }
         }
 
@@ -460,18 +502,15 @@
             setTimeout(() => { modal.classList.add('hidden'); }, 300);
         }
 
-        // Đóng modal khi click ra ngoài overlay
         document.getElementById('wish-modal').addEventListener('click', (e) => { if(e.target === document.getElementById('wish-modal')) closeModal('wish-modal'); });
         document.getElementById('edit-wish-modal').addEventListener('click', (e) => { if(e.target === document.getElementById('edit-wish-modal')) closeModal('edit-wish-modal'); });
 
-        // === HIỆU ỨNG CANVAS PARTICLES (BỤI SÁNG HIỆN ĐẠI) ===
+        // === CANVAS HIỆU ỨNG ===
         const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
         let particlesArray;
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
         let mouse = { x: null, y: null, radius: 100 };
         window.addEventListener('mousemove', (event) => { mouse.x = event.x; mouse.y = event.y; });
         window.addEventListener('mouseout', () => { mouse.x = undefined; mouse.y = undefined; });
@@ -483,23 +522,15 @@
                 this.size = size; this.color = color;
             }
             draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-                ctx.fillStyle = this.color;
-                ctx.fill();
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color; ctx.fill();
             }
             update() {
                 if (this.x > canvas.width || this.x < 0) this.directionX = -this.directionX;
                 if (this.y > canvas.height || this.y < 0) this.directionY = -this.directionY;
-
-                // Tương tác chuột nhẹ
                 let dx = mouse.x - this.x; let dy = mouse.y - this.y;
                 let distance = Math.sqrt(dx*dx + dy*dy);
-                if (distance < mouse.radius) {
-                    this.x -= dx/20;
-                    this.y -= dy/20;
-                }
-
+                if (distance < mouse.radius) { this.x -= dx/20; this.y -= dy/20; }
                 this.x += this.directionX; this.y += this.directionY;
                 this.draw();
             }
@@ -512,8 +543,7 @@
                 let size = (Math.random() * 3) + 1;
                 let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
                 let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
-                let directionX = (Math.random() * 0.4) - 0.2;
-                let directionY = (Math.random() * 0.4) - 0.2;
+                let directionX = (Math.random() * 0.4) - 0.2; let directionY = (Math.random() * 0.4) - 0.2;
                 let color = Math.random() > 0.5 ? '#fbc2eb' : '#a1c4fd';
                 particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
             }
@@ -522,12 +552,9 @@
         function animateParticles() {
             requestAnimationFrame(animateParticles);
             ctx.clearRect(0, 0, innerWidth, innerHeight);
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-            }
+            for (let i = 0; i < particlesArray.length; i++) { particlesArray[i].update(); }
         }
-        initParticles();
-        animateParticles();
+        initParticles(); animateParticles();
     </script>
 </body>
 </html>
